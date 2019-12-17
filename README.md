@@ -5,3 +5,21 @@ This is a temporary repo for working with the nomelette data while I try to figu
 The `data` folder contains some raw data that used to be in a database (postgres)
 
 The purpose of this repo is to create a script to take that data and insert it into dynamo.
+
+At time of writing this is all hard coded to be talking to a LOCAL dynamo instance.
+
+## Useful commands
+
+All of this is local-only and assumes Dynamo is running on localhost:8000.
+
+This'll seed the database;
+
+```
+npm run seed:db
+```
+
+This gets an item out;
+
+```
+aws dynamodb get-item --table-name nomelette-recipes --key '{"id": {"S": "summer-soup"}}'  --endpoint-url http://localhost:8000
+```
