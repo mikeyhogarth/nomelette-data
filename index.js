@@ -1,5 +1,5 @@
-const buildRecipes = require("./buildRecipes");
-const recipes = buildRecipes();
-const insertRecipes = require("./insertRecipes");
+const buildDbItems = require("./buildDbItems");
+const dbItems = buildDbItems();
+const insertDbItems = require("./insertDbItems");
 
-insertRecipes(recipes);
+insertDbItems(dbItems);

@@ -21,5 +21,11 @@ npm run seed:db
 This gets an item out;
 
 ```
-aws dynamodb get-item --table-name nomelette-recipes --key '{"id": {"S": "summer-soup"}}'  --endpoint-url http://localhost:8000
+aws dynamodb get-item --table-name nomelette.co.uk --key '{"pk": {"S": "Recipe#summer-soup"}, "sk":{"S": "Recipe#summer-soup"}}'  --endpoint-url http://localhost:8000
+```
+
+This does a query
+
+```
+aws dynamodb query --table-name nomelette.co.uk --key-condition-expression 'pk = :v1' --expression-attribute-values '{":v1": { "S": "Recipe#summer-soup"}}'  --endpoint-url http://localhost:8000
 ```

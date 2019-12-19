@@ -1,18 +1,18 @@
 const dynamodb = require("./dynamo");
 
-module.exports = async recipes => {
+module.exports = async dbItems => {
   const timestamp = new Date().getTime();
 
   const chunkSize = 25;
   let chunk;
-  for (let i = 0, j = recipes.length; i < j; i += chunkSize) {
-    chunk = recipes.slice(i, i + chunkSize);
+  for (let i = 0, j = dbItems.length; i < j; i += chunkSize) {
+    chunk = dbItems.slice(i, i + chunkSize);
 
     // createBatchItemRequest
-    const requests = chunk.map(recipe => ({
+    const requests = chunk.map(dbItem => ({
       PutRequest: {
         Item: {
-          ...recipe,
+          ...dbItem,
           createdAt: timestamp
         }
       }
@@ -20,7 +20,7 @@ module.exports = async recipes => {
 
     const params = {
       RequestItems: {
-        "nomelette-recipes": requests
+        "nomelette.co.uk": requests
       }
     };
 
